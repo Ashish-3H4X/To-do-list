@@ -30,11 +30,12 @@ const createTasks = () => {
 
         const controls = document.createElement("div");
         controls.classList.add("controls");
-
+       // delete btn
         const deleteBtn = document.createElement("i");
         deleteBtn.classList.add("bi", "bi-trash", "delete");
 
         deleteBtn.addEventListener("click", () => { deleteTask(index) });
+        // complete Btn
         const completeBtn = document.createElement("i");
         completeBtn.classList.add("bi", "bi-check-square", "checked");
 
@@ -67,7 +68,7 @@ const deleteTask = (index) => {
  const checkValidation =()=>{
     if (titleElem.value.trim() === "" || descElem.value.trim() === "")
     {
-        alert("Enter the Title Properly or Description  Thank you");
+        alert("Enter the Title or Description properly  Thank you");
         return false;
     }
      return true;
