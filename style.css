@@ -74,3 +74,6 @@ h3{
 .controls .delete:active{
    color: red;
 }
+.controls .checked:active{
+    color:rgb(47, 0, 255);
+}

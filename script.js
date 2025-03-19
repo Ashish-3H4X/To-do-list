@@ -29,18 +29,19 @@ const createTasks = () => {
         controls.classList.add("controls");
 
         const deleteBtn = document.createElement("i");
-        deleteBtn.classList.add("bi","bi-trash","delete");
+        deleteBtn.classList.add("bi", "bi-trash", "delete");
 
-        deleteBtn.addEventListener("click",()=>{
-           deleteTask(index)
+        deleteBtn.addEventListener("click", () => { deleteTask(index) });
+        const completeBtn = document.createElement("i");
+        completeBtn.classList.add("bi", "bi-check-square", "checked");
+
+        completeBtn.addEventListener("click", function () {
+            task.style.backgroundColor = "red";
         });
 
-        const completeBtn = document.createElement("i");
-        completeBtn.classList.add("bi","bi-check-square")
-
         const updateBtn = document.createElement("i");
-        updateBtn.classList.add("bi","bi-pencil-square");
-       
+        updateBtn.classList.add("bi", "bi-pencil-square");
+
         controls.appendChild(updateBtn);
         controls.appendChild(deleteBtn);
         controls.appendChild(completeBtn);
@@ -51,11 +52,13 @@ const createTasks = () => {
     })
 };
 
-const deleteTask = (index)=>{
-    allTasks.splice(index,1);
-    localStorage.setItem("tasks",JSON.stringify(allTasks));
+const deleteTask = (index) => {
+    allTasks.splice(index, 1);
+    localStorage.setItem("tasks", JSON.stringify(allTasks));
     createTasks();
 }
+
+
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
