@@ -48,6 +48,8 @@ h3{
     display: flex;
     flex-direction: column;
     gap: 10px;
+    position: relative;
+    padding-top: 50px;
 }
 .task .title{
     background-color: rgb(63, 10, 176);
@@ -60,4 +62,15 @@ h3{
     padding: 10px;
     color: white;
     border-radius: 5px;
+}
+.controls{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+    font-size: 25px;
+}
+.controls .delete:active{
+   color: red;
 }
