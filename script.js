@@ -2,6 +2,9 @@ const form = document.querySelector("form");
 const titleElem = document.querySelector("#title");
 const descElem = document.querySelector("#description");
 const body = document.body;
+const submitBtn = document.querySelector("#submitBtn");
+
+
 
 const allTasks = localStorage.getItem("tasks") ? JSON.parse(localStorage.getItem("tasks")) : [];
 
@@ -58,17 +61,28 @@ const deleteTask = (index) => {
     createTasks();
 }
 
+//  here We are checking the validintion and give alert message 
+
+
+ const checkValidation =()=>{
+    if (titleElem.value.trim() === "" || descElem.value.trim() === "")
+    {
+        alert("Enter the Title Properly or Description  Thank you");
+        return false;
+    }
+     return true;
+ }
 
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
-
+  if(!checkValidation()) return;
     allTasks.push({
         title: titleElem.value,
         description: descElem.value,
         completed: false,
     });
-
+    
     createTasks();
 
     titleElem.value = "";
