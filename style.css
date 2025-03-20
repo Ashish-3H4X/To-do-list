@@ -69,11 +69,11 @@ h3 {
 }
 
 .task .desc {
-    background-color: rgb(255, 6, 226);
     padding: 10px;
     color: rgb(0, 0, 0);
     border-radius: 5px;
-    box-shadow:  2px 5px 2px 2px black;
+    box-shadow:  2px 5px 2px 2px black;    background-color: rgb(127, 255, 212);
+
 }
 
 .controls {
@@ -83,6 +83,10 @@ h3 {
     display: flex;
     gap: 10px;
     font-size: 25px;
+    background-color:white;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
 }
 
 .controls .delete:active {
@@ -90,4 +94,10 @@ h3 {
 }
 .controls .checked:active {
     color: rgb(0, 0, 0);
+}
+
+.title.completed,.desc.completed{
+    text-decoration: line-through;
+    background-color: rgb(141, 151, 110);
+    color: white;
 }
