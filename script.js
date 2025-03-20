@@ -5,7 +5,7 @@ const body = document.body;
 const submitBtn = document.querySelector("#submitBtn");
 
 const sound = new Audio("./sound_1.mp3");
-
+let updatingTodoIndex = null;
 
 const allTasks = localStorage.getItem("tasks") ? JSON.parse(localStorage.getItem("tasks")) : [];
 
@@ -54,6 +54,7 @@ const createTasks = () => {
 
         const updateBtn = document.createElement("i");
         updateBtn.classList.add("bi", "bi-pencil-square");
+        updateBtn.addEventListener("click", () => updateTodo(index));
 
         controls.appendChild(updateBtn);
         controls.appendChild(deleteBtn);
@@ -70,6 +71,16 @@ const deleteTask = (index) => {
     localStorage.setItem("tasks", JSON.stringify(allTasks));
     createTasks();
 }
+const updateTodo = (index) => {
+    if (allTasks[index].completed) return;
+
+    updatingTodoIndex = allTasks[index];
+    titleElem.value = updatingTodoIndex.title;
+    descElem.value = updatingTodoIndex.description;
+
+    submitBtn.textContent = "Update Task";
+    window.scrollTo({ top: 0, behavior: "smooth" })
+}
 
 const checkValidation = () => {
     if (titleElem.value.trim() === "" || descElem.value.trim() === "") {
@@ -83,11 +94,22 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
 
     if (!checkValidation()) return null;
-    allTasks.push({
-        title: titleElem.value,
-        description: descElem.value,
-        completed: false,
-    });
+
+    if (updatingTodoIndex || !updatingTodoIndex.completed) {
+        submitBtn.textContent = "Update Todo"
+        updatingTodoIndex.title = titleElem.value;
+        updatingTodoIndex.description = descElem.value;
+        updatingTodoIndex = null;
+
+        submitBtn.textContent = "Add Task";
+        localStorage.setItem("tasks",JSON.stringify(allTasks));
+    } else {
+        allTasks.push({
+            title: titleElem.value,
+            description: descElem.value,
+            completed: false,
+        });
+    }
 
     sound.play();
     createTasks();
