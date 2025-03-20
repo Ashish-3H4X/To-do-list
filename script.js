@@ -4,7 +4,7 @@ const descElem = document.querySelector("#description");
 const body = document.body;
 const submitBtn = document.querySelector("#submitBtn");
 
-
+const sound = new Audio("./sound_1.mp3");
 
 const allTasks = localStorage.getItem("tasks") ? JSON.parse(localStorage.getItem("tasks")) : [];
 
@@ -42,7 +42,7 @@ const createTasks = () => {
         completeBtn.addEventListener("click", function () {
             task.style.backgroundColor = "red";
         });
-
+ 
         const updateBtn = document.createElement("i");
         updateBtn.classList.add("bi", "bi-pencil-square");
 
@@ -62,7 +62,7 @@ const deleteTask = (index) => {
     createTasks();
 }
 
-//  here We are checking the validintion and give alert message 
+//  Here checking the validiation and give alert message 
 
 
  const checkValidation =()=>{
@@ -77,13 +77,15 @@ const deleteTask = (index) => {
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
-  if(!checkValidation()) return;
+
+  if(!checkValidation()) return null;
     allTasks.push({
         title: titleElem.value,
         description: descElem.value,
         completed: false,
     });
     
+    sound.play();
     createTasks();
 
     titleElem.value = "";
